@@ -15,7 +15,7 @@ void setup() {
   Serial.println("Servo position calibration");
   Serial.println("==========================");
   pwm.begin();
-  pwm.setPWMFreq(50); // Analog servos run at ~50 Hz updates (20ms PWM period)
+  pwm.setPWMFreq(60); // Analog servos run at ~50 Hz updates (20ms PWM period)
 }
 
 void loop() {
@@ -27,17 +27,18 @@ void loop() {
   uint16_t pulselen = 0;
   
   // read servo number from serial
+  Serial.println();
   Serial.print("Enter servo number (0-15): ");
-  if (Serial.available() > 0) {
-    servonum = Serial.parseInt();
-  }
-  
+  while (!Serial.available()) {}  // wait until data entered
+  servonum = Serial.parseInt();
+  Serial.println(servonum);
+    
   // read position value from serial
   Serial.print("Enter pulse length (0..4096): ");
-  if (Serial.available() > 0) {
-    pulselen = Serial.parseInt();
-  }
-  
+  while (!Serial.available()) {}    
+  pulselen = Serial.parseInt();
+  Serial.println(pulselen);
+    
   // set desired pulse length
   pwm.setPWM(servonum, 0, pulselen);
   
