@@ -121,6 +121,17 @@ void loop() {
     pos_inc++;
   }
   
+  // so now get up again do basis position
+  int pos_dec = 0;
+  while ((REL_MAX - pos_dec) >= B_K_FL_REL) {
+    knees_pos(REL_MAX - pos_dec,
+              REL_MAX - pos_dec,
+              REL_MAX - pos_dec,
+              REL_MAX - pos_dec);
+    delay(100);
+    pos_dec++;
+  }
+    
 //  delay(3000);
 //  // base position
 //  shoulders_raw(B_S_FL, B_S_FR, B_S_RL, B_S_RR);
