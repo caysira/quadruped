@@ -15,7 +15,7 @@ void setup() {
   Serial.println("Servo position calibration");
   Serial.println("==========================");
   pwm.begin();
-  pwm.setPWMFreq(60); // Analog servos run at ~50 Hz updates (20ms PWM period)
+  pwm.setPWMFreq(50); // Analog servos run at ~50 Hz updates (20ms PWM period)
 }
 
 void loop() {
