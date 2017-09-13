@@ -17,4 +17,11 @@ void hips_raw(int raw_front_left, int raw_front_right, int raw_rear_left, int ra
 // REL_MIN=leg fully down, REL_MAX=leg fully up
 void knees_pos(int pos_front_left, int pos_front_right, int pos_rear_left, int pos_rear_right); 
 
+// todo
+void hips_pos(int pos_front_left, int pos_front_right, int pos_rear_left, int pos_rear_right); 
+void base_pos();
+void flat_pos();
+void toe_tips_pos();
+
+
 #endif // H_CONTROL
