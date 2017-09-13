@@ -1,3 +1,11 @@
+// this header file defines named values for servo parameters
+// like servo names and values for certain positions
+// the quadruped has for legs, each with a "hip" and a "knee"
+
+// the values derived from the servo calibration tool
+// the "knee" servos are numbers 2, 4, 6, 8
+// the "hip" servos are numbers 1, 3, 5, 7
+
 // define servo names for "knees"
 #define KNEE_FRONT_LEFT 6
 #define KNEE_FRONT_RIGHT 8
