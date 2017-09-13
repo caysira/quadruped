@@ -127,22 +127,22 @@ void loop() {
   // robot should lie down flat slowly, starting from base position
   int pos_inc = 0;
   while ((POS_REL_BASE_KNEE_FRONT_LEFT + pos_inc) <= REL_MAX) {
-    knees_pos(B_K_FL_REL + pos_inc, 
-              B_K_FR_REL + pos_inc, 
-              B_K_RL_REL + pos_inc, 
-              B_K_RR_REL + pos_inc);
-    delay(100);
+    knees_pos(POS_REL_BASE_KNEE_FRONT_LEFT + pos_inc, 
+              POS_REL_BASE_KNEE_FRONT_RIGHT + pos_inc, 
+              POS_REL_BASE_KNEE_REAR_LEFT + pos_inc, 
+              POS_REL_BASE_KNEE_REAR_RIGHT + pos_inc);
+    delay(100); // give the servo some time to act
     pos_inc++;
   }
   
   // so now get up again do basis position
   int pos_dec = 0;
-  while ((REL_MAX - pos_dec) >= B_K_FL_REL) {
+  while ((REL_MAX - pos_dec) >= POS_REL_BASE_KNEE_FRONT_LEFT) {
     knees_pos(REL_MAX - pos_dec,
               REL_MAX - pos_dec,
               REL_MAX - pos_dec,
               REL_MAX - pos_dec);
-    delay(100);
+    delay(100); // give the servo some time to act
     pos_dec++;
   }
     
