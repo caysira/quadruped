@@ -1,11 +1,9 @@
-//  with the values from servo calibration
-//  do some basic positioning of the q-bot then
-// the "knee" servos are numbers 2, 4, 6, 8
-// the "hip" servos are numbers 1, 3, 5, 7
+//  do some basic positioning of the q-bot using the definitions and basic functions
 
 #include <Wire.h>
 #include <Adafruit_PWMServoDriver.h>
 #include "ServoDefinitions.h"
+#include "ControlLegs.h"
 
 // called this way, it uses the default address 0x40
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
@@ -16,52 +14,6 @@ void setup() {
   Serial.println("=======================");
   pwm.begin();
   pwm.setPWMFreq(50); // Analog servos run at ~50 Hz updates (20ms PWM period)
-}
-
-// sets the positions of the hip-servos to the respective positions
-// the values are raw-values as excpeted ba pws.setPWM
-void knees_raw(int raw_front_left,
-               int raw_front_right,
-               int raw_rear_left,
-               int raw_rear_right) {
-  pwm.setPWM(KNEE_FRONT_LEFT, 0, raw_front_left);
-  pwm.setPWM(KNEE_FRONT_RIGHT, 0, raw_front_right);
-  pwm.setPWM(KNEE_REAR_LEFT, 0, raw_rear_left);
-  pwm.setPWM(KNEE_REAR_RIGHT, 0, raw_rear_right);
-}
-
-// sets the positions of the shoulder-servos to the respective positions
-// the values are raw-values as excpeted ba pws.setPWM
-void hips_raw(int raw_front_left,
-              int raw_front_right,
-              int raw_rear_left,
-              int raw_rear_right) {
-  pwm.setPWM(HIP_FRONT_LEFT, 0, raw_front_left);
-  pwm.setPWM(HIP_FRONT_RIGHT, 0, raw_front_right);
-  pwm.setPWM(HIP_REAR_LEFT, 0, raw_rear_left);
-  pwm.setPWM(HIP_REAR_RIGHT, 0, raw_rear_right);
-}
-
-// sets the positions for the hip-servos to the desired positions
-// this are relative positions mapped to the raw ones accordingly
-// the position range goes from REL_MIN..REL_MAX: 
-// REL_MIN=leg fully down, REL_MAX=leg fully up
-void knees_pos(int pos_front_left,
-               int pos_front_right,
-               int pos_rear_left,
-               int pos_rear_right) {
-
-  int raw_front_left, raw_front_right, raw_rear_left, raw_rear_right;
-  
-  // map positions values to raw values for pwm.setPWM
-  raw_front_left = map(pos_front_left, REL_MIN, REL_MAX, POS_DOWN_KNEE_FRONT_LEFT, POS_UP_KNEE_FRONT_LEFT);
-  raw_front_right = map(pos_front_right, REL_MIN, REL_MAX, POS_DOWN_KNEE_FRONT_RIGHT, POS_UP_KNEE_FRONT_RIGHT);
-  raw_rear_left = map(pos_rear_left, REL_MIN, REL_MAX, POS_DOWN_KNEE_REAR_LEFT, POS_UP_KNEE_REAR_LEFT);
-  raw_rear_right = map(pos_rear_right, REL_MIN, REL_MAX, POS_DOWN_KNEE_REAR_RIGHT, POS_UP_KNEE_REAR_RIGHT);
-  
-  // set servos to desired positions
-  knees_raw(raw_front_left, raw_front_right, raw_rear_left, raw_rear_right);
-  
 }
 
 void loop() {
