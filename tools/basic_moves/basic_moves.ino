@@ -5,6 +5,7 @@
 
 #include <Wire.h>
 #include <Adafruit_PWMServoDriver.h>
+#include ServoDefinitions.h
 
 // define servo names for "knees"
 #define KNEE_FRONT_LEFT 6
