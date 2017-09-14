@@ -34,7 +34,22 @@ void flat_pos();
 // sets the leg positions so that bot stands on it's toe tips
 void toe_tips_pos();
 
-// 
+// which things could we need in addition ????
+// --> function for triggering spefic complex movements for certain legs
+// e.g. leg_up, leg_down, leg forward, leg_back, bend_leg
+//
 
+//                  base plate
+//   hip link  O ================= O    hip link            
+//            /                     \
+//           /                       \
+//          /                         \
+//         O                           O
+//          \                         /
+//           \                       /
+//            \                     /
+//             \                   /
+//
+//
 
 #endif // H_CONTROL
